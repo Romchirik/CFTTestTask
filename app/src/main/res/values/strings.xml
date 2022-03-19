@@ -9,6 +9,6 @@
     <string name="currency_char_code_test">USD</string>
     <string name="currency_nominal_name_test">1 американский доллар</string>
     <string name="currency_nominal_name_long_test">1 американский доллар яблоки 1 кг антоновка вкусно очень бери не пожалеешь</string>
-    <string name="currency_value_test">154.4 RUB</string>
+    <string name="currency_value_test">154.4</string>
     <string name="primary_currency">RUB</string>
 </resources>
