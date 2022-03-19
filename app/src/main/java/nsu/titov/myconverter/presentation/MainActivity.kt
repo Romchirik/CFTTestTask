@@ -1,4 +1,4 @@
-package nsu.titov.myconverter
+package nsu.titov.myconverter.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -23,7 +23,5 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.getFragment<NavHostFragment>().navController
         val bottomMenu = binding.bottomMenuView
         bottomMenu.setupWithNavController(navController)
-
-
     }
 }

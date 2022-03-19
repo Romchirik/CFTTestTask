@@ -3,4 +3,12 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="bottom_menu_currency_list_text">Currency list</string>
     <string name="bottom_menu_converter_text">Converter</string>
+    <string name="usd_char_code_test">USD</string>
+    <string name="usd_value_test">115.1</string>
+    <string name="currency_name_with_nominal_test">1 american dollar</string>
+    <string name="currency_char_code_test">USD</string>
+    <string name="currency_nominal_name_test">1 американский доллар</string>
+    <string name="currency_nominal_name_long_test">1 американский доллар яблоки 1 кг антоновка вкусно очень бери не пожалеешь</string>
+    <string name="currency_value_test">154.4</string>
+    <string name="primary_currency">RUB</string>
 </resources>
