@@ -7,19 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import nsu.titov.myconverter.data.models.ResponseDtoMapper
-import nsu.titov.myconverter.data.repository.RepositoryImpl
 import nsu.titov.myconverter.databinding.FragmentCurrencyListBinding
 import nsu.titov.myconverter.domain.models.ErrorType
-import nsu.titov.myconverter.presentation.SharedViewModel
-import nsu.titov.myconverter.presentation.SharedViewModelFactory
+import nsu.titov.myconverter.presentation.CurrencyListViewModel
 import nsu.titov.myconverter.ui.adapters.CurrencyListRecyclerAdapter
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CurrencyListFragment : Fragment() {
 
     private lateinit var binding: FragmentCurrencyListBinding
-    private lateinit var viewModel: SharedViewModel
+    private val currencyListViewModel by viewModel<CurrencyListViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,11 +24,6 @@ class CurrencyListFragment : Fragment() {
     ): View? {
 
         binding = FragmentCurrencyListBinding.inflate(inflater, container, false)
-
-        val repository = RepositoryImpl(ResponseDtoMapper())
-        val viewModelFactory = SharedViewModelFactory(repository)
-
-        viewModel = ViewModelProvider(viewModelStore, viewModelFactory)[SharedViewModel::class.java]
         return binding.root
     }
 
@@ -40,11 +32,11 @@ class CurrencyListFragment : Fragment() {
         val adapter = CurrencyListRecyclerAdapter()
 
         //setting up observers
-        viewModel.errorType.observe(viewLifecycleOwner, Observer { error ->
+        currencyListViewModel.errorType.observe(viewLifecycleOwner, Observer { error ->
             onErrorOccurred(error)
         })
 
-        viewModel.currencyData.observe(viewLifecycleOwner, Observer { newData ->
+        currencyListViewModel.currencyData.observe(viewLifecycleOwner, Observer { newData ->
             if (binding.swipeRefreshLayout.isRefreshing) {
                 binding.swipeRefreshLayout.isRefreshing = false
             }
@@ -52,14 +44,14 @@ class CurrencyListFragment : Fragment() {
         })
 
         //starting update
-        viewModel.getCurrencyData()
+        currencyListViewModel.getCurrencyData()
         recycler.adapter = adapter
 
         binding.swipeRefreshLayout.setOnRefreshListener { onRefreshRequested() }
     }
 
     private fun onRefreshRequested() {
-        viewModel.getCurrencyData()
+        currencyListViewModel.getCurrencyData()
     }
 
     private fun onErrorOccurred(type: ErrorType) {

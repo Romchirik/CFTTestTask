@@ -6,17 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import nsu.titov.myconverter.databinding.FragmentConverterBinding
+import nsu.titov.myconverter.presentation.CurrencyListViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class ConverterFragment : Fragment() {
 
     private lateinit var binding: FragmentConverterBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-
-    }
+    private val currencyListViewModel by viewModel<CurrencyListViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
