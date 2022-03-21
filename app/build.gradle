@@ -63,8 +63,8 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$coroutines_lifecycle_version"
 
 
-//    def koin_version = "3.1.2"
-//    implementation "io.insert-koin:koin-core:$koin_version"
-//    implementation "io.insert-koin:koin-android:$koin_version"
+    def koin_version = "3.1.2"
+    implementation "io.insert-koin:koin-core:$koin_version"
+    implementation "io.insert-koin:koin-android:$koin_version"
 
 }

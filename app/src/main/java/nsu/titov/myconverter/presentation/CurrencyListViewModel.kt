@@ -11,10 +11,9 @@ import nsu.titov.myconverter.domain.models.ErrorType
 import nsu.titov.myconverter.domain.models.Repository
 import nsu.titov.myconverter.domain.models.SimpleCurrency
 
-class SharedViewModel(private val repository: Repository) : ViewModel() {
+class CurrencyListViewModel(private val repository: Repository) : ViewModel() {
     val currencyData: MutableLiveData<List<SimpleCurrency>?> = MutableLiveData()
     val errorType: MutableLiveData<ErrorType> = MutableLiveData()
-
 
     fun getCurrencyData() {
         viewModelScope.launch(Dispatchers.IO) {
