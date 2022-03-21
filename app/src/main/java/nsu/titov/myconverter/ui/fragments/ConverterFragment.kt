@@ -1,4 +1,4 @@
-package nsu.titov.myconverter.presentation.fragments
+package nsu.titov.myconverter.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,6 +11,12 @@ import nsu.titov.myconverter.databinding.FragmentConverterBinding
 class ConverterFragment : Fragment() {
 
     private lateinit var binding: FragmentConverterBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -1,4 +1,4 @@
-package nsu.titov.myconverter.presentation
+package nsu.titov.myconverter.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

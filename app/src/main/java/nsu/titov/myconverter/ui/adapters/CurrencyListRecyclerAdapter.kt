@@ -1,4 +1,4 @@
-package nsu.titov.myconverter.presentation.adapters
+package nsu.titov.myconverter.ui.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import nsu.titov.myconverter.R
 import nsu.titov.myconverter.databinding.CurrencyRateItemBinding
-import nsu.titov.myconverter.domain.CurrencyTrend
-import nsu.titov.myconverter.domain.SimpleCurrency
+import nsu.titov.myconverter.domain.models.CurrencyTrend
+import nsu.titov.myconverter.domain.models.SimpleCurrency
 
 
 class CurrencyListRecyclerAdapter :
@@ -32,7 +32,7 @@ class CurrencyListRecyclerAdapter :
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setCurrencyList(list: List<SimpleCurrency>) {
+    fun updateCurrencyData(list: List<SimpleCurrency>) {
         currencyList = list
         notifyDataSetChanged()
     }
@@ -40,11 +40,12 @@ class CurrencyListRecyclerAdapter :
     class CurrencyRateViewHolder(private val binding: CurrencyRateItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        @SuppressLint("SetTextI18n")
         fun bind(currencyData: SimpleCurrency) {
             binding.charCodeView.text = currencyData.charCode
             binding.nominalNameView.text = "%s %s".format(currencyData.nominal, currencyData.name)
-            binding.valueView.text = "%.2lf".format(currencyData.currentValue)
-            binding.currencyTrendView.setImageResource(currencyTrendToPic(currencyData.currencyTrend))
+            binding.valueView.text = "%.2f".format(currencyData.value)
+            binding.currencyTrendView.setImageResource(currencyTrendToPic(currencyData.trend))
         }
 
         private fun currencyTrendToPic(currencyTrend: CurrencyTrend): Int {
