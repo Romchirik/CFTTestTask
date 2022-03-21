@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">My Converter</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="bottom_menu_currency_list_text">Currency list</string>
-    <string name="bottom_menu_converter_text">Converter</string>
+    <string name="bottom_menu_currency_list_text">Курс валют</string>
+    <string name="bottom_menu_converter_text">Конвертировать</string>
     <string name="usd_char_code_test">USD</string>
     <string name="usd_value_test">115.1</string>
     <string name="currency_name_with_nominal_test">1 american dollar</string>
