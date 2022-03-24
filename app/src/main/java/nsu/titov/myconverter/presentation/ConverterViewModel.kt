@@ -11,7 +11,9 @@ import nsu.titov.myconverter.domain.models.ConverterCurrency
 import nsu.titov.myconverter.domain.models.Repository
 
 class ConverterViewModel(private val repository: Repository) : ViewModel() {
+
     private val currencyData: MutableLiveData<List<ConverterCurrency>> = MutableLiveData(listOf())
+    var preselectedCurrency: String? = null
     var lastConvertedValue = "0.0"
 
     fun getCurrencyData(): LiveData<List<ConverterCurrency>> {

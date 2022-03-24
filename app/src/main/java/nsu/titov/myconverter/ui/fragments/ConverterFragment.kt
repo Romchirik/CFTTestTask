@@ -12,7 +12,6 @@ import nsu.titov.myconverter.databinding.FragmentConverterBinding
 import nsu.titov.myconverter.presentation.ConverterViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class ConverterFragment : Fragment() {
 
     private lateinit var binding: FragmentConverterBinding
@@ -29,7 +28,6 @@ class ConverterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         converterViewModel.getCurrencyData().observe(viewLifecycleOwner) { newData ->
             val items = newData.map { it.charCode }
             adapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, items)
@@ -37,8 +35,12 @@ class ConverterFragment : Fragment() {
         }
         converterViewModel.requestDataFromRepo()
 
+        val preselectedCurrencyCode = arguments?.get(PRESELECTED_CURR_CODE) as String?
+
         binding.convertButton.setOnClickListener { onConvertRequested() }
         binding.convertResultView.text = converterViewModel.lastConvertedValue
+        binding.currencySelectorView.setText(preselectedCurrencyCode ?: "")
+
     }
 
     private fun onConvertRequested(showHints: Boolean = true) {
@@ -50,7 +52,6 @@ class ConverterFragment : Fragment() {
             if (showHints) showInputHint(getString(R.string.currency_not_selected_hint))
             return
         }
-
         val value = binding.valueInput.text?.toString()?.toDoubleOrNull() ?: run {
             if (showHints) showInputHint(getString(R.string.no_input_value_hint))
             return
@@ -63,7 +64,6 @@ class ConverterFragment : Fragment() {
         val text = getString(R.string.converter_result_format).format(result, code)
         binding.convertResultView.text = text
         converterViewModel.lastConvertedValue = text
-
     }
 
     private fun showInputHint(hint: String) {
@@ -72,5 +72,9 @@ class ConverterFragment : Fragment() {
             hint,
             Toast.LENGTH_SHORT
         ).show()
+    }
+
+    companion object {
+        const val PRESELECTED_CURR_CODE = "preselectedCurrency"
     }
 }
