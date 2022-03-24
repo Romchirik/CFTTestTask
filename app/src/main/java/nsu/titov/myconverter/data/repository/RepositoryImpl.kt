@@ -1,6 +1,7 @@
 package nsu.titov.myconverter.data.repository
 
 import android.util.Log
+import nsu.titov.myconverter.data.dao.CurrencyDao
 import nsu.titov.myconverter.data.mappers.RepositoryInternalMapper
 import nsu.titov.myconverter.data.models.CBRResponse
 import nsu.titov.myconverter.data.models.Currency
@@ -15,7 +16,8 @@ import retrofit2.Response
 class RepositoryImpl(
     private val currencyListMapper: CurrencyMapper<Currency, SimpleCurrency>,
     private val converterMapper: CurrencyMapper<Currency, ConverterCurrency>,
-    private val internalMapper: RepositoryInternalMapper
+    private val internalMapper: RepositoryInternalMapper,
+    private val localRepo: CurrencyDao
 ) : Repository {
 
 
@@ -56,10 +58,13 @@ class RepositoryImpl(
         val response = requestData()
         if (null == response) {
             lastError = ErrorType.NETWORK_ERROR
+            buffer = localRepo.getAllCurrencyData().map { internalMapper.dtoToCurrency(it) }
+            lastError = ErrorType.DATABASE_ERROR
             return
         } else {
             if (response.isSuccessful) {
                 buffer = internalMapper.currencyFromResponse(response.body()!!)
+                localRepo.addCurrencyAll(buffer.map { internalMapper.currencyToDto(it) })
             }
             return
         }
