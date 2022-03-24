@@ -1,12 +1,11 @@
 package nsu.titov.myconverter.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.lifecycle.Observer
+import androidx.fragment.app.Fragment
 import nsu.titov.myconverter.databinding.FragmentCurrencyListBinding
 import nsu.titov.myconverter.domain.models.ErrorType
 import nsu.titov.myconverter.presentation.CurrencyListViewModel
@@ -31,27 +30,27 @@ class CurrencyListFragment : Fragment() {
         val recycler = binding.currencyListRecyclerView
         val adapter = CurrencyListRecyclerAdapter()
 
-        //setting up observers
-        currencyListViewModel.errorType.observe(viewLifecycleOwner, Observer { error ->
+        // setting up observers
+        currencyListViewModel.errorType.observe(viewLifecycleOwner) { error ->
             onErrorOccurred(error)
-        })
+        }
 
-        currencyListViewModel.currencyData.observe(viewLifecycleOwner, Observer { newData ->
+        currencyListViewModel.currencyData.observe(viewLifecycleOwner) { newData ->
             if (binding.swipeRefreshLayout.isRefreshing) {
                 binding.swipeRefreshLayout.isRefreshing = false
             }
             newData?.let { data -> adapter.updateCurrencyData(data) }
-        })
+        }
 
-        //starting update
-        currencyListViewModel.getCurrencyData()
+        // starting update
+        currencyListViewModel.requestDataFromRepo()
         recycler.adapter = adapter
 
         binding.swipeRefreshLayout.setOnRefreshListener { onRefreshRequested() }
     }
 
     private fun onRefreshRequested() {
-        currencyListViewModel.getCurrencyData()
+        currencyListViewModel.requestDataFromRepo()
     }
 
     private fun onErrorOccurred(type: ErrorType) {
