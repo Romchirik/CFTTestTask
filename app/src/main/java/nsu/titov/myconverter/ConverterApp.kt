@@ -10,7 +10,7 @@ class ConverterApp : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@ConverterApp)
-            modules(listOf(appModule))
+            koin.loadModules(listOf(appModule))
         }
     }
 }

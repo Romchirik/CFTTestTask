@@ -64,6 +64,7 @@ dependencies {
 
 
     def koin_version = "3.1.2"
+    implementation "io.insert-koin:koin-ktor:$koin_version"
     implementation "io.insert-koin:koin-core:$koin_version"
     implementation "io.insert-koin:koin-android:$koin_version"
 

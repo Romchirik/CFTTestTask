@@ -4,5 +4,5 @@ import com.squareup.moshi.Json
 
 data class CBRResponse(
     @Json(name = "Valute")
-    val currencyItems: Map<String, CurrencyEntity>
+    val currencyItems: Map<String, Currency>
 )

@@ -4,7 +4,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import nsu.titov.myconverter.domain.models.ErrorType
@@ -15,12 +14,12 @@ class CurrencyListViewModel(private val repository: Repository) : ViewModel() {
     val currencyData: MutableLiveData<List<SimpleCurrency>?> = MutableLiveData()
     val errorType: MutableLiveData<ErrorType> = MutableLiveData()
 
-    fun getCurrencyData() {
+    fun requestDataFromRepo() {
         viewModelScope.launch(Dispatchers.IO) {
-            val response = repository.getCurrencyList()
+            val response = repository.getSimpleCurrencyList()
             if (null == response) {
                 withContext(Dispatchers.Main) {
-                    errorType.value = repository.getErrorType()
+                    errorType.value = repository.getLastError()
                 }
             } else {
                 withContext(Dispatchers.Main) {

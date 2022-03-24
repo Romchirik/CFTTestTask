@@ -1,10 +1,8 @@
 package nsu.titov.myconverter.data.models
 
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 
-@JsonClass(generateAdapter = true)
-data class CurrencyEntity(
+data class Currency(
     @Json(name = "ID")
     val id: String,
     @Json(name = "NumCode")

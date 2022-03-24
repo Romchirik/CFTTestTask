@@ -10,5 +10,15 @@
     <string name="currency_nominal_name_test">1 американский доллар</string>
     <string name="currency_nominal_name_long_test">1 американский доллар яблоки 1 кг антоновка вкусно очень бери не пожалеешь</string>
     <string name="currency_value_test">154.4</string>
+    <string name="converter_value_initial">0.0</string>
     <string name="primary_currency">RUB</string>
+    <string name="convert_button_label">Конвертировать</string>
+    <string name="currency_selector_hint">Валюта</string>
+    <string name="currency_amount_input_hint">Сумма в рублях</string>
+    <string name="converter_result_format">%.2f\n%s</string>
+
+    <!--  User hints  -->
+    <string name="no_input_value_hint">Введите значение в рублях</string>
+    <string name="currency_not_selected_hint">Выберите валюту</string>
+    <string name="internal_error_hint">Произошла внутренняя ошибка, попробуйте перезапустить приложение</string>
 </resources>
