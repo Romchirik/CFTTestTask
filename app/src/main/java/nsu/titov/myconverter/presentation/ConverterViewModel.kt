@@ -13,7 +13,7 @@ import nsu.titov.myconverter.domain.models.Repository
 class ConverterViewModel(private val repository: Repository) : ViewModel() {
 
     private val currencyData: MutableLiveData<List<ConverterCurrency>> = MutableLiveData(listOf())
-    var preselectedCurrency: String? = null
+    val errorType = repository.getLastError()
     var lastConvertedValue = "0.0"
 
     fun getCurrencyData(): LiveData<List<ConverterCurrency>> {
@@ -37,9 +37,9 @@ class ConverterViewModel(private val repository: Repository) : ViewModel() {
     fun requestDataFromRepo() {
         viewModelScope.launch(Dispatchers.IO) {
             val response = repository.getConverterCurrencyList()
-            response?.let {
+            if (response.isNotEmpty()) {
                 withContext(Dispatchers.Main) {
-                    currencyData.value = it
+                    currencyData.value = response
                 }
             }
         }
