@@ -46,7 +46,7 @@ class CurrencyListRecyclerAdapter(private val onItemClicked: OnRecyclerItemClick
         private var currencyCode: String? = null
 
         init {
-//            binding.root.setOnClickListener(this)
+            binding.root.setOnClickListener(this)
         }
 
         @SuppressLint("SetTextI18n")
