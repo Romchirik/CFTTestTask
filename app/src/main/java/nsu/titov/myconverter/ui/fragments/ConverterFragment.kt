@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import nsu.titov.myconverter.R
 import nsu.titov.myconverter.databinding.FragmentConverterBinding
 import nsu.titov.myconverter.presentation.ConverterViewModel
+import nsu.titov.myconverter.ui.adapters.ErrorToastAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ConverterFragment : Fragment() {
@@ -17,6 +18,7 @@ class ConverterFragment : Fragment() {
     private lateinit var binding: FragmentConverterBinding
     private lateinit var adapter: ArrayAdapter<String>
     private val converterViewModel by viewModel<ConverterViewModel>()
+    private val errorAdapter = ErrorToastAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,6 +35,11 @@ class ConverterFragment : Fragment() {
             adapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, items)
             binding.currencySelectorView.setAdapter(adapter)
         }
+
+        converterViewModel.errorType.observe(viewLifecycleOwner) { error ->
+            errorAdapter.onError(error, requireContext())
+        }
+
         converterViewModel.requestDataFromRepo()
 
         val preselectedCurrencyCode = arguments?.get(PRESELECTED_CURR_CODE) as String?

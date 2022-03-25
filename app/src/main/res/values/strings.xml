@@ -21,4 +21,7 @@
     <string name="no_input_value_hint">Введите значение в рублях</string>
     <string name="currency_not_selected_hint">Выберите валюту</string>
     <string name="internal_error_hint">Произошла внутренняя ошибка, попробуйте перезапустить приложение</string>
+
+    <string name="network_error">Не удалось обновить данные, проверьте подключение к интернету</string>
+    <string name="database_error">Не удалось восстановить сохраненные данные</string>
 </resources>

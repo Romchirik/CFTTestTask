@@ -1,8 +1,10 @@
 package nsu.titov.myconverter.domain.models
 
+import androidx.lifecycle.LiveData
+
 interface Repository {
-    fun getLastError(): ErrorType
-    suspend fun forceRefreshData(): ErrorType
-    suspend fun getConverterCurrencyList(): List<ConverterCurrency>?
-    suspend fun getSimpleCurrencyList(): List<SimpleCurrency>?
+    fun getLastError(): LiveData<ErrorType>
+    suspend fun forceRefreshData()
+    suspend fun getConverterCurrencyList(): List<ConverterCurrency>
+    suspend fun getSimpleCurrencyList(): List<SimpleCurrency>
 }

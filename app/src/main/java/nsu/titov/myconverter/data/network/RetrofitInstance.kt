@@ -5,7 +5,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-object RetrofitInstance {
+class RetrofitInstance {
     val api: CBRApiService by lazy {
         val moshi = Moshi.Builder()
             .add(KotlinJsonAdapterFactory())

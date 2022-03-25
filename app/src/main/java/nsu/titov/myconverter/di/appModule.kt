@@ -6,6 +6,7 @@ import nsu.titov.myconverter.data.mappers.CurrencyToConverterMapper
 import nsu.titov.myconverter.data.mappers.CurrencyToSimpleMapper
 import nsu.titov.myconverter.data.mappers.RepositoryInternalMapper
 import nsu.titov.myconverter.data.models.Currency
+import nsu.titov.myconverter.data.network.RetrofitInstance
 import nsu.titov.myconverter.data.repository.RepositoryImpl
 import nsu.titov.myconverter.domain.mappers.CurrencyMapper
 import nsu.titov.myconverter.domain.models.ConverterCurrency
@@ -27,12 +28,15 @@ val appModule = module {
         ).build()
     }
 
+    single { RetrofitInstance() }
+
     single<Repository> {
         RepositoryImpl(
             get(named("CurrencyToSimple")),
             get(named("CurrencyToConverter")),
             get(),
-            get<CurrencyDatabase>().currencyDao()
+            get<CurrencyDatabase>().currencyDao(),
+            RetrofitInstance().api
         )
     }
 
