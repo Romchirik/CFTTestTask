@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu
+	xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/currencyListFragment"
-        android:icon="@drawable/ic_baseline_money_24"
-        android:title="@string/bottom_menu_currency_list_text" />
-    <item
-        android:id="@+id/converterFragment"
-        android:icon="@drawable/ic_baseline_compare_arrows_24"
-        android:title="@string/bottom_menu_converter_text" />
+	<item
+		android:id="@+id/currencyListFragment"
+		android:icon="@drawable/ic_baseline_money_24"
+		android:title="@string/bottom_menu_currency_list_text"
+		/>
+	<item
+		android:id="@+id/converterFragment"
+		android:icon="@drawable/ic_baseline_compare_arrows_24"
+		android:title="@string/bottom_menu_converter_text"
+		/>
 </menu>

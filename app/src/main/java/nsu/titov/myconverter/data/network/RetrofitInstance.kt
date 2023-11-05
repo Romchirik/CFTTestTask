@@ -6,15 +6,15 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 class RetrofitInstance {
-    val api: CBRApiService by lazy {
-        val moshi = Moshi.Builder()
-            .add(KotlinJsonAdapterFactory())
-            .build()
+	val api: CBRApiService by lazy {
+		val moshi = Moshi.Builder()
+			.add(KotlinJsonAdapterFactory())
+			.build()
 
-        Retrofit.Builder()
-            .baseUrl("https://www.cbr-xml-daily.ru")
-            .addConverterFactory(MoshiConverterFactory.create(moshi))
-            .build()
-            .create(CBRApiService::class.java)
-    }
+		Retrofit.Builder()
+			.baseUrl("https://www.cbr-xml-daily.ru")
+			.addConverterFactory(MoshiConverterFactory.create(moshi))
+			.build()
+			.create(CBRApiService::class.java)
+	}
 }

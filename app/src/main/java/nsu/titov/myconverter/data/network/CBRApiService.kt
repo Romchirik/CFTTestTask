@@ -5,6 +5,6 @@ import retrofit2.Response
 import retrofit2.http.GET
 
 interface CBRApiService {
-    @GET("/daily_json.js")
-    suspend fun getCurrencyList(): Response<CBRResponse>
+	@GET("/daily_json.js")
+	suspend fun getCurrencyList(): Response<CBRResponse>
 }

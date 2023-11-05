@@ -1,16 +1,28 @@
 package nsu.titov.myconverter
 
 import android.app.Application
-import nsu.titov.myconverter.di.appModule
-import org.koin.android.ext.koin.androidContext
-import org.koin.core.context.startKoin
+import android.content.Context
+import androidx.room.Room
+import nsu.titov.myconverter.data.CurrencyDatabase
 
 class ConverterApp : Application() {
-    override fun onCreate() {
-        super.onCreate()
-        startKoin {
-            androidContext(this@ConverterApp)
-            koin.loadModules(listOf(appModule))
-        }
-    }
+
+	override fun onCreate() {
+		super.onCreate()
+
+		//TODO DI
+		databaseInstance = Room.databaseBuilder(
+			this,
+			CurrencyDatabase::class.java,
+			"CurrencyDatabase"
+		).build()
+		context = this
+	}
+
+	companion object {
+		//TODO DI
+		lateinit var context: Context
+		//TODO DI
+		lateinit var databaseInstance: CurrencyDatabase
+	}
 }

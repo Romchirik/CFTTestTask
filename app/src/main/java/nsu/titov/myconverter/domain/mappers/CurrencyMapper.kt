@@ -1,5 +1,10 @@
 package nsu.titov.myconverter.domain.mappers
 
-interface CurrencyMapper<DataLayerType, ToType> {
-    fun fromDataLayerType(values: List<DataLayerType>): List<ToType>
+interface CurrencyMapper<FromType, ToType> {
+
+	fun fromData(value: FromType): ToType
+
+	fun List<FromType>.fromData(): List<ToType> {
+		return this.map { fromData(it) }
+	}
 }
